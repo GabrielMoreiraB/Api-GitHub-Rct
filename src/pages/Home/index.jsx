@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { useContext } from 'react';
 import { UsuarioContext } from '../../context/Usuario';
+import { useNavigate } from 'react-router-dom';
 
 const StyledContainer = styled.div`
 background: #101723;
@@ -44,27 +45,33 @@ width: px;
 const Home = () => {
   const { usuario, setUsuario } = useContext(UsuarioContext);
 
+  const navigate = useNavigate()
+
   function formUsuarioSubmit(e) {
     e.preventDefault();
-    const usuarioValue = e.currentTarget.querySelector('input');
-  setUsuario(usuarioValue.value);
-  console.log(usuario)
+    setUsuario(e.target.value);
+    return navigate('/user')
   }
 
   return (
     <StyledContainer>
-      <form onSubmit={(e) => formUsuarioSubmit(e)}>
+      <div>
       <label htmlFor="usuario">
         <StyledTitle>
           Insira um usuário válido do
           <Styledgit> GitHub</Styledgit>
         </StyledTitle>
       </label>
-      <StyledInput type="text" name="usuario" id="usuario" />
+      <StyledInput 
+      type="text" 
+      name="usuario" 
+      id="usuario" 
+      onBlur={(e) => formUsuarioSubmit(e)}
+      />
       <StyledButton>
         <StyledLupa src="icons8-lupa.svg" alt="" />
       </StyledButton>
-      </form>
+      </div>
       <StyledImg
         src="https://octodex.github.com/images/spidertocat.png"
         alt=""
