@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { useContext } from 'react';
 import { UsuarioContext } from '../../context/Usuario';
 import { useNavigate } from 'react-router-dom';
+import Loading from '../../components/Loading';
 
 const StyledContainer = styled.div`
 background: #101723;
@@ -13,8 +14,10 @@ box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25),
   inset 0px -4px 5px rgba(0, 0, 0, 0.22);
 border-radius: 48px;
 padding: 1em 2em;
-margin: auto 3em;
+margin: 30vh auto;
+place-items: center;
 display: flex;
+max-width: 800px;
 `;
 const StyledTitle = styled.h1`
 color: #6a9dff;
