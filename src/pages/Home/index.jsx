@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { useContext } from 'react';
 import { UsuarioContext } from '../../context/Usuario';
 import { useNavigate } from 'react-router-dom';
+import {FaSearch } from "react-icons/fa"
 import Loading from '../../components/Loading';
 
 const StyledContainer = styled.div`
@@ -72,7 +73,7 @@ const Home = () => {
       onBlur={(e) => formUsuarioSubmit(e)}
       />
       <StyledButton>
-        <StyledLupa src="icons8-lupa.svg" alt="" />
+        <FaSearch/>
       </StyledButton>
       </div>
       <StyledImg
