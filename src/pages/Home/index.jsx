@@ -41,6 +41,7 @@ width: 200px;
 `;
 const StyledButton = styled.button`
 background-color: transparent;
+color: white;
 `;
 const StyledLupa = styled.img`
 width: px;

@@ -8,18 +8,27 @@ const StylesContainer = styled.div `
     display: flex;
     flex-wrap: wrap;
     width: 100%;
+    gap: 1em;
+    @media (max-width: 1115px) {
+    padding: 0 ;
+  }
+    @media (min-width: 1115px) {
+    padding: 0 9em;
+  }
+  
 `
 const StyledFlex = styled.div `
     display: flex;
     align-items: center;
     justify-content: space-around;
+    text-align: center;
 
 `
 const StyledBox = styled.div `
 flex: 0 0 40%; 
-  padding: 10px;
+  padding: 1em;
 
-  @media (max-width: 768px) {
+  @media (max-width: 1115px) {
     flex: 0 0 90%;
   }
 
@@ -51,7 +60,12 @@ const StyledImg = styled.img`
 width: 80px;
 border-radius: 50%;
 margin: 0 2em;
+
 `;
+
+const StyledSpanColor = styled.span`
+    color: #434C7E;
+`
 
 const User = () => {
 
@@ -63,7 +77,8 @@ const User = () => {
             bio,
             followers,
             following,
-            publicRepos } = useContext(UsuarioContext);
+            publicRepos,
+            data } = useContext(UsuarioContext);
 
     return ( 
         <StylesContainer>
@@ -82,11 +97,22 @@ const User = () => {
 
             <StyledBox>
                 <StyledFlex>
-                    <h2>Perfil</h2>
-                    <StyledImg src={imgUser} alt="" />
+                    <h2>Perfil <StyledSpanColor>{usuario}</StyledSpanColor></h2>
+                    <StyledImg src="https://octodex.github.com/images/inspectocat.jpg" alt="" />
                 </StyledFlex>
-                <p>{bio}</p>
+                <StyledFlex>
+                    <p>{bio}</p>
+                </StyledFlex>
+                <p>Membro desde <StyledSpanColor>{data}</StyledSpanColor></p>
                 <a href={blog} target="_blank"> Blog pessoal</a>
+            </StyledBox>
+
+            <StyledBox>
+                <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=GabrielMoreiraB&theme=transparent&hide_border=true"/>
+                
+            </StyledBox>
+            <StyledBox>
+            <img src="https://github-readme-streak-stats.herokuapp.com/?user=GabrielMoreiraB&stroke=2ea043&background=101723&ring=3382ed&fire=3382ed&currStreakNum=0bd967&currStreakLabel=3382ed&sideNums=0bd967&sideLabels=3382ed&dates=0bd967&hide_border=true" />
             </StyledBox>
         </StylesContainer>
 

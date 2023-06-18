@@ -1,5 +1,6 @@
 import { createContext, useEffect, useState } from 'react';
 import { apiGetUser } from '../components/Services/apiServices';
+import trataData from '../components/Services/trataData';
 
 
 
@@ -16,6 +17,7 @@ export const UsuarioProvider = ({ children }) => {
     const [followers, setFollowers] = useState('');
     const [following, setFollowing] = useState('');
     const [publicRepos, setPublicRepos] = useState('');
+    const [data, setData] = useState('');
 
 useEffect(() => {
     async function getUser() {
@@ -27,7 +29,8 @@ useEffect(() => {
         setBio(user.bio);
         setFollowers(user.followers);
         setFollowing(user.following);
-        setPublicRepos(user.public_repos)
+        setPublicRepos(user.public_repos);
+        setData(trataData(user.created_at))
     }
     getUser()
 },[])
@@ -45,7 +48,8 @@ useEffect(() => {
             bio,
             followers,
             following,
-            publicRepos
+            publicRepos,
+            data
             }}>
             {children}
         </UsuarioContext.Provider>

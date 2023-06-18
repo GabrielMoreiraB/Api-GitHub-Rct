@@ -19,11 +19,12 @@ margin: .5em;
 border-radius: 50%;
 padding: .6em;
 font-size: 1.8em;
+color:#ffffff
 `;
 
 const StyledContainer = styled.div `
   display: grid;
-  grid-template-columns:auto 1fr  ;
+  grid-template-columns:auto auto  ;
   grid-template-rows:auto 1fr  ;
 `
 
@@ -45,7 +46,7 @@ const StyledContainerHor = styled.div`
   justify-content: end;
   grid-column: 2/3;
   grid-row: 1/2;
-  height: 100px;
+  max-height: 100px
   
 `
 
