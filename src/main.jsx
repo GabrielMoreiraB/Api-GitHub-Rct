@@ -9,6 +9,7 @@ import Home from './pages/Home/index.jsx';
 import User from './pages/User/index.jsx';
 import ErrorPage from './pages/ErrorPage/index.jsx';
 import { UsuarioProvider } from './context/Usuario.jsx'
+import Portfolio from './pages/Portfolio/index.jsx'
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
       {
         path: 'user',
         element: <User/>,
+      },
+      {
+        path: 'portfolio',
+        element: <Portfolio/>,
       },
     ]
   },

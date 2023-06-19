@@ -70,6 +70,13 @@ function App() {
     e.preventDefault();
     return navigate('/user')
   }
+
+  function turnPortfolio(e){
+    e.preventDefault();
+    return navigate('/portfolio')
+  }
+
+
   return (
     <>
       <StyledContainer>
@@ -81,7 +88,7 @@ function App() {
         <StyledContainerVert>
           <StyledImg src={imgUser} alt="" />
           <StyledButton onClick={(e)=>turnUser(e)}><FaUserAstronaut/></StyledButton>
-          <StyledButton onClick={console.log('tem   q ir pro repositorio')}><RiGitRepositoryLine/></StyledButton>
+          <StyledButton onClick={(e)=>turnPortfolio(e)}><RiGitRepositoryLine/></StyledButton>
         </StyledContainerVert>
 
         <StyledContainerUser>

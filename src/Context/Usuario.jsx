@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from 'react';
-import { apiGetUser } from '../components/Services/apiServices';
+import { apiGetPortfolio, apiGetUser } from '../components/Services/apiServices';
 import trataData from '../components/Services/trataData';
 
 
@@ -34,6 +34,14 @@ useEffect(() => {
     }
     getUser()
 },[])
+
+useEffect( ()=> {
+    async function getPortfolio() {
+        let portifolio = await apiGetPortfolio()
+
+    }
+    getPortfolio()
+})
 
 
     return (

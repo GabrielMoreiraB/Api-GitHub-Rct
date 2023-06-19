@@ -104,7 +104,7 @@ const User = () => {
                     <p>{bio}</p>
                 </StyledFlex>
                 <p>Membro desde <StyledSpanColor>{data}</StyledSpanColor></p>
-                <a href={blog} target="_blank"> Blog pessoal</a>
+                {blog !== '' && <a href={blog} target="_blank"> Blog pessoal</a>}
             </StyledBox>
 
             <StyledBox>
