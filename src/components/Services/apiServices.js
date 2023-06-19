@@ -15,8 +15,9 @@ export async function apiGetUser() {
 export async function apiGetPortfolio(){
 
     const portfolio = await get(BACK_AND_URL_PORTFOLIO);
-    console.log(portfolio);
-
+    /* console.log(portfolio);
+ */
+return portfolio;
 }
 
 

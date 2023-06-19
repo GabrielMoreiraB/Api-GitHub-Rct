@@ -19,6 +19,9 @@ export const UsuarioProvider = ({ children }) => {
     const [publicRepos, setPublicRepos] = useState('');
     const [data, setData] = useState('');
 
+    const [portifolio, setPortifolio] = useState([]);
+    const [pagina, setPagina] = useState(1);
+
 useEffect(() => {
     async function getUser() {
         let user = await apiGetUser();
@@ -38,10 +41,12 @@ useEffect(() => {
 useEffect( ()=> {
     async function getPortfolio() {
         let portifolio = await apiGetPortfolio()
-
+        
+        setPortifolio(portifolio)
+        
     }
     getPortfolio()
-})
+},[])
 
 
     return (
@@ -57,7 +62,10 @@ useEffect( ()=> {
             followers,
             following,
             publicRepos,
-            data
+            data,
+            portifolio,
+            pagina,
+            setPagina
             }}>
             {children}
         </UsuarioContext.Provider>

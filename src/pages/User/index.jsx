@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { useContext } from 'react';
-import { UsuarioContext } from '../../context/Usuario';
 import Loading from '../../components/Loading';
+import { UsuarioContext } from '../../Context/Usuario';
 
 
 const StylesContainer = styled.div `
@@ -20,7 +20,6 @@ const StylesContainer = styled.div `
 const StyledFlex = styled.div `
     display: flex;
     align-items: center;
-    justify-content: space-around;
     text-align: center;
 
 `
@@ -67,10 +66,17 @@ const StyledSpanColor = styled.span`
     color: #434C7E;
 `
 
+const StyledSpace = styled.div`
+display: flex;
+width: 100%;
+align-items: center;
+justify-content: space-evenly;
+
+`
+
 const User = () => {
 
     const { usuario,
-            imgUser,
             name, 
             blog, 
             location,
@@ -78,8 +84,9 @@ const User = () => {
             followers,
             following,
             publicRepos,
-            data } = useContext(UsuarioContext);
+            data} = useContext(UsuarioContext);
 
+            
     return ( 
         <StylesContainer>
             <StyledBox>
@@ -90,10 +97,11 @@ const User = () => {
                 </div>
             </StyledBox>
             
+
             <StyledBox>
-                <h2>Número de Repositorios</h2> 
-                <h3>{publicRepos}</h3>
+            <img src="https://github-readme-streak-stats.herokuapp.com/?user=GabrielMoreiraB&stroke=2ea043&background=101723&ring=3382ed&fire=3382ed&currStreakNum=0bd967&currStreakLabel=3382ed&sideNums=0bd967&sideLabels=3382ed&dates=0bd967&hide_border=true" />
             </StyledBox>
+           
 
             <StyledBox>
                 <StyledFlex>
@@ -105,15 +113,17 @@ const User = () => {
                 </StyledFlex>
                 <p>Membro desde <StyledSpanColor>{data}</StyledSpanColor></p>
                 {blog !== '' && <a href={blog} target="_blank"> Blog pessoal</a>}
+                <StyledSpace>
+                <h2>Número de Repositorios</h2> 
+                <h3>{publicRepos}</h3>
+                </StyledSpace>
+                
             </StyledBox>
 
             <StyledBox>
                 <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=GabrielMoreiraB&theme=transparent&hide_border=true"/>
-                
             </StyledBox>
-            <StyledBox>
-            <img src="https://github-readme-streak-stats.herokuapp.com/?user=GabrielMoreiraB&stroke=2ea043&background=101723&ring=3382ed&fire=3382ed&currStreakNum=0bd967&currStreakLabel=3382ed&sideNums=0bd967&sideLabels=3382ed&dates=0bd967&hide_border=true" />
-            </StyledBox>
+
         </StylesContainer>
 
         
