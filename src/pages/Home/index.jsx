@@ -43,9 +43,6 @@ const StyledButton = styled.button`
 background-color: transparent;
 color: white;
 `;
-const StyledLupa = styled.img`
-width: px;
-`;
 
 const Home = () => {
   const { usuario, setUsuario } = useContext(UsuarioContext);

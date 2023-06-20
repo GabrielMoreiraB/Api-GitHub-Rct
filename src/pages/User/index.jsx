@@ -8,12 +8,9 @@ const StylesContainer = styled.div `
     display: flex;
     flex-wrap: wrap;
     width: 100%;
-    gap: 1em;
+    gap: .5em;
     @media (max-width: 1115px) {
     padding: 0 ;
-  }
-    @media (min-width: 1115px) {
-    padding: 0 9em;
   }
   
 `
@@ -45,8 +42,8 @@ box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25),
   inset 0px 6px 8px rgba(255, 255, 255, 0.1),
   inset 0px -4px 5px rgba(0, 0, 0, 0.22);
   border-radius: 20px;
-  height: min-content;
-  width:40%;
+  height: 300px;
+  width:45%;
 `
 
 const StyledSpan = styled.span `

@@ -24,7 +24,7 @@ color:#ffffff
 
 const StyledContainer = styled.div `
   display: grid;
-  grid-template-columns:auto auto  ;
+  grid-template-columns:100px auto  ;
   grid-template-rows:auto 1fr  ;
 `
 
@@ -35,7 +35,7 @@ const StyledContainerVert = styled.div`
   grid-row: 1/3;
   grid-column: 1/2;
   width: 100px;
-  height: 100vh;
+  height: 93vh;
   background-color: #434C7E;
   padding-top: 2em;
   border-radius: 5px;
@@ -78,7 +78,7 @@ function App() {
 
 
   return (
-    <>
+
       <StyledContainer>
         <StyledContainerHor>
           <StyledButton onClick={(e)=>turnHome(e)}><FaGithub/></StyledButton>
@@ -96,10 +96,6 @@ function App() {
         </StyledContainerUser>
       </StyledContainer>
 
-      
-      
-      
-    </>
   )
 }
 
