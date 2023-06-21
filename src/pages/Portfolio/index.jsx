@@ -1,9 +1,10 @@
 import styled from 'styled-components';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import Loading from '../../components/Loading';
 import { UsuarioContext } from '../../Context/Usuario';
 import trataData from '../../components/Services/trataData';
 import { FaStar, FaRegStar } from "react-icons/fa";
+import { get } from '../../components/Services/httpService';
 
 
 const StyledBox = styled.div `
@@ -59,27 +60,36 @@ justify-self: end;
 
 const Portfolio = () => {
 
-    const { portifolio} = useContext(UsuarioContext);
+    const { portifolio,
+            pagina,
+            setPagina} = useContext(UsuarioContext);
+    
 
+    async function getLinguagens(name){
+      const languages = await get(
+        `https://api.github.com/repos/GabrielMoreiraB/${name}/languages`)
+        console.log(Object.keys(languages))
+      return languages;
+    }
+    
     console.log(portifolio)
 
-    return ( 
-        <StyledBox>
-
-          {portifolio.map((item, index) => 
+    return (
+      <StyledBox>
+        {portifolio.map(async (item, index) => {
+          const linguagens = await getLinguagens(item.name);
+          return (
             <StyledContainerPort key={index}>
               <h3>{item.name}</h3>
               <p>criado em: <StyledSpan>{trataData(item.created_at)}</StyledSpan></p>
               <StyledLinguage>{item.language}</StyledLinguage>
               <StyledStar> <FaStar/> </StyledStar>
-              {console.log(item.languages_url)}
+              <p>{Object.keys(linguagens).join(" ")}</p>
             </StyledContainerPort>
-            
-            )}  
-
-        
-        </StyledBox>
-     );
+          );
+        })}
+      </StyledBox>
+    );
 }
  
 export default Portfolio;
