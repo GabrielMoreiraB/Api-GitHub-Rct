@@ -1,7 +1,7 @@
 import { Outlet } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import { useContext } from 'react';
-import { UsuarioContext } from './context/Usuario';
+import { UsuarioContext } from './Context/Usuario';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { FaUserAstronaut, FaGithub, FaGrinStars } from "react-icons/fa"
@@ -76,13 +76,18 @@ function App() {
     return navigate('/portfolio')
   }
 
+  function turnFavoritos(e){
+    e.preventDefault();
+    return navigate('/favoritos')
+  }
+
 
   return (
 
       <StyledContainer>
         <StyledContainerHor>
           <StyledButton onClick={(e)=>turnHome(e)}><FaGithub/></StyledButton>
-          <StyledButton onClick={console.log('tem   q ir pro favoritos')}><FaGrinStars/></StyledButton>
+          <StyledButton onClick={(e)=> turnFavoritos(e)}><FaGrinStars/></StyledButton>
         </StyledContainerHor>
 
         <StyledContainerVert>

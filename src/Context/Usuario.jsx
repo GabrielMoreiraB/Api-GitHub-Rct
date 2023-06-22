@@ -4,7 +4,6 @@ import trataData from '../components/Services/trataData';
 
 
 
-
 export const UsuarioContext = createContext();
 
 export const UsuarioProvider = ({ children }) => {
@@ -21,6 +20,8 @@ export const UsuarioProvider = ({ children }) => {
 
     const [portifolio, setPortifolio] = useState([]);
     const [pagina, setPagina] = useState(1);
+
+    const[favoritos, setFavoritos] = useState([]);
 
 useEffect(() => {
     async function getUser() {
@@ -39,14 +40,13 @@ useEffect(() => {
 },[])
 
 useEffect( ()=> {
-    async function getPortfolio() {
-        let portifolio = await apiGetPortfolio()
+    async function getPortfolio(pagina) {
+        let port = await apiGetPortfolio(pagina)
         
-        setPortifolio(portifolio)
-        
+        setPortifolio((preventPortifolio)=> [...preventPortifolio, ...port]);
     }
-    getPortfolio()
-},[])
+    getPortfolio(pagina)
+},[pagina])
 
 
     return (
@@ -65,7 +65,9 @@ useEffect( ()=> {
             data,
             portifolio,
             pagina,
-            setPagina
+            setPagina,
+            favoritos, 
+            setFavoritos
             }}>
             {children}
         </UsuarioContext.Provider>

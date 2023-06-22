@@ -2,7 +2,6 @@ import { get } from "./httpService";
 
 const BACK_AND_URL = 'http://api.github.com/users/GabrielMoreiraB';
 
-const BACK_AND_URL_PORTFOLIO = 'https://api.github.com/users/GabrielMoreiraB/repos?&per_page=10&page=1&sort=pushed&direction=asc}'
 
 export async function apiGetUser() {
     
@@ -12,9 +11,9 @@ export async function apiGetUser() {
 }
 
 
-export async function apiGetPortfolio(){
+export async function apiGetPortfolio(pagina){
 
-    const portfolio = await get(BACK_AND_URL_PORTFOLIO);
+    const portfolio = await get(`https://api.github.com/users/GabrielMoreiraB/repos?&per_page=10&page=${pagina}&sort=pushed&direction=asc}`);
     /* console.log(portfolio);
  */
 return portfolio;

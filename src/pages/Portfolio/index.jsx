@@ -3,8 +3,8 @@ import { useContext, useState } from 'react';
 import Loading from '../../components/Loading';
 import { UsuarioContext } from '../../Context/Usuario';
 import trataData from '../../components/Services/trataData';
-import { FaStar, FaRegStar } from "react-icons/fa";
-import { get } from '../../components/Services/httpService';
+import { FaStar, FaRegStar, FaRegArrowAltCircleDown } from "react-icons/fa";
+
 
 
 const StyledBox = styled.div `
@@ -39,7 +39,7 @@ const StyledContainerPort = styled.div`
   border-radius: 10px;
   display: grid;
   grid-template-columns:50% 50%  ;
-  grid-template-rows:auto auto auto ;
+  grid-template-rows:auto auto;
 `
 
 const StyledSpan = styled.span `
@@ -50,44 +50,74 @@ const StyledSpan = styled.span `
 `
 
 const StyledLinguage = styled.h4`
-  color: #662400;
+  color: #a0fa97;
 `
 const StyledStar = styled.span`
 display: flex;
 justify-self: end;
 `
 
+const StyledButton = styled.button`
+  background-color: #434C7E;
+  color: white;
+  padding: 0.5em 1em;
+  font-size: 20px;
+  align-items: center;
+  justify-content: space-evenly;
+  justify-items: start;
+  border-radius: 10px;
+`
+
 
 const Portfolio = () => {
 
     const { portifolio,
+            setPagina,
             pagina,
-            setPagina} = useContext(UsuarioContext);
+            favoritos, 
+            setFavoritos
+            } = useContext(UsuarioContext);    
     
+    const [starredItems, setStarredItems] = useState([]);
 
-    async function getLinguagens(name){
-      const languages = await get(
-        `https://api.github.com/repos/GabrielMoreiraB/${name}/languages`)
-        console.log(Object.keys(languages))
-      return languages;
-    }
-    
-    console.log(portifolio)
+    const handleToggle = (item, index) => {
+      setStarredItems((prevItems) => {
+        const updatedItems = [...prevItems];
+        updatedItems[index] = !updatedItems[index];
+        return updatedItems;
+      });
+      const posicaoItem = favoritos.indexOf(item);
+        let array = [...favoritos]
+        if(posicaoItem === -1) {
+          array.push(item);
+        } else { 
+          array.splice(index, 1);
+        }
+        setFavoritos(array);
+    };
+    console.log(favoritos)
+
+
 
     return (
-      <StyledBox>
-        {portifolio.map(async (item, index) => {
-          const linguagens = await getLinguagens(item.name);
+      <StyledBox >
+        {portifolio.map((item, index) => {
           return (
             <StyledContainerPort key={index}>
-              <h3>{item.name}</h3>
+               <a target='_blank' href={item.html_url}><h3>{item.name}</h3></a>
               <p>criado em: <StyledSpan>{trataData(item.created_at)}</StyledSpan></p>
               <StyledLinguage>{item.language}</StyledLinguage>
-              <StyledStar> <FaStar/> </StyledStar>
-              <p>{Object.keys(linguagens).join(" ")}</p>
+              <StyledStar >
+                 {starredItems[index] ? (
+                    <FaStar onClick={() => handleToggle(item, index)} />
+                  ) : (
+                    <FaRegStar onClick={() => handleToggle(item, index)} />
+                  )}
+              </StyledStar>
             </StyledContainerPort>
           );
         })}
+        <StyledButton onClick={()=> setPagina(pagina + 1)}><FaRegArrowAltCircleDown/></StyledButton>
       </StyledBox>
     );
 }

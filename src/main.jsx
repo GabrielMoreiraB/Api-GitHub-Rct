@@ -7,6 +7,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
 import Home from './pages/Home/index.jsx';
 import User from './pages/User/index.jsx';
+import Favoritos from './pages/Favoritos/index.jsx';
 import ErrorPage from './pages/ErrorPage/index.jsx';
 import Portfolio from './pages/Portfolio/index.jsx'
 import { UsuarioProvider } from './Context/Usuario.jsx'
@@ -31,6 +32,11 @@ const router = createBrowserRouter([
       },
     ]
   },
+  {
+    path: '/favoritos',
+    element: <Favoritos/>,
+    errorElement: <ErrorPage/>,
+  }
 ])
 
 ReactDOM.createRoot(document.getElementById('root')).render(
