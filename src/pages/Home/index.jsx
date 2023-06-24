@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 import { useContext } from 'react';
-import { UsuarioContext } from '../../context/Usuario';
+import { UsuarioContext } from '../../Context/Usuario';
 import { useNavigate } from 'react-router-dom';
 import {FaSearch } from "react-icons/fa"
 import Loading from '../../components/Loading';
+import { motion } from 'framer-motion';
 
-const StyledContainer = styled.div`
+const StyledContainer = styled(motion.div)`
 background: #101723;
 box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25),
   0px 188px 52px rgba(0, 0, 0, 0.01), 0px 120px 48px rgba(0, 0, 0, 0.04),
@@ -20,13 +21,13 @@ place-items: center;
 display: flex;
 max-width: 800px;
 `;
-const StyledTitle = styled.h1`
+const StyledTitle = styled(motion.h1)`
 color: #6a9dff;
 `;
 const Styledgit = styled.span`
 color: #9862fe;
 `;
-const StyledInput = styled.input`
+const StyledInput = styled(motion.input)`
 padding: 4px 8px;
 font-size: 24px;
 background-color: #434c7e;
@@ -45,7 +46,9 @@ color: white;
 `;
 
 const Home = () => {
-  const { usuario, setUsuario } = useContext(UsuarioContext);
+  const { setUsuario,
+          MotionContainer,
+          MotionForm } = useContext(UsuarioContext);
 
   const navigate = useNavigate()
 
@@ -56,15 +59,25 @@ const Home = () => {
   }
 
   return (
-    <StyledContainer>
+    <StyledContainer
+        variants={MotionContainer}
+        initial={"onInitial"}
+        animate={"offAnimation"}
+        transition={{
+          when: "beforeChildren",
+          staggerChildren: 2,
+          type: "just",
+        }}
+    >
       <div>
       <label htmlFor="usuario">
-        <StyledTitle>
+        <StyledTitle >
           Insira um usuário válido do
           <Styledgit> GitHub</Styledgit>
         </StyledTitle>
       </label>
       <StyledInput 
+      variants={MotionForm}
       type="text" 
       name="usuario" 
       id="usuario" 

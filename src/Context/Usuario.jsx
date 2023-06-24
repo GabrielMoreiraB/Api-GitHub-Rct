@@ -22,10 +22,11 @@ export const UsuarioProvider = ({ children }) => {
     const [pagina, setPagina] = useState(1);
 
     const[favoritos, setFavoritos] = useState([]);
+    const [starredItems, setStarredItems] = useState([]);
 
 useEffect(() => {
-    async function getUser() {
-        let user = await apiGetUser();
+    async function getUser(usuario) {
+        let user = await apiGetUser(usuario);
         setImgUser(user.avatar_url);
         setName(user.name);
         setBlog(user.blog);
@@ -36,18 +37,32 @@ useEffect(() => {
         setPublicRepos(user.public_repos);
         setData(trataData(user.created_at))
     }
-    getUser()
-},[])
+    getUser(usuario)
+},[usuario])
 
 useEffect( ()=> {
-    async function getPortfolio(pagina) {
-        let port = await apiGetPortfolio(pagina)
+    async function getPortfolio(usuario, pagina) {
+        let port = await apiGetPortfolio(usuario, pagina)
         
         setPortifolio((preventPortifolio)=> [...preventPortifolio, ...port]);
     }
-    getPortfolio(pagina)
-},[pagina])
+    getPortfolio(usuario, pagina )
+},[usuario, pagina])
 
+
+
+    const MotionContainer = {
+    onInitial: { x: -100, opacity: 0 },
+    offAnimation: {
+      x: 0,
+      opacity: 1,
+      duration: 1.3,
+    },
+  };
+  const MotionForm = {
+    onInitial: { x: -100, opacity: 0 },
+    offAnimation: { x: 0, opacity: 1 },
+  };
 
     return (
         <UsuarioContext.Provider value={
@@ -67,7 +82,11 @@ useEffect( ()=> {
             pagina,
             setPagina,
             favoritos, 
-            setFavoritos
+            setFavoritos,
+            starredItems, 
+            setStarredItems,
+            MotionContainer,
+            MotionForm
             }}>
             {children}
         </UsuarioContext.Provider>

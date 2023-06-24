@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { useContext } from 'react';
 import Loading from '../../components/Loading';
 import { UsuarioContext } from '../../Context/Usuario';
+import { motion } from 'framer-motion';
 
 
 const StylesContainer = styled.div `
@@ -20,7 +21,7 @@ const StyledFlex = styled.div `
     text-align: center;
 
 `
-const StyledBox = styled.div `
+const StyledBox = styled(motion.div) `
 flex: 0 0 40%; 
   padding: 1em;
 
@@ -81,26 +82,52 @@ const User = () => {
             followers,
             following,
             publicRepos,
-            data} = useContext(UsuarioContext);
+            data,
+            MotionContainer,
+            MotionForm} = useContext(UsuarioContext);
 
-            
+
     return ( 
         <StylesContainer>
-            <StyledBox>
+            <StyledBox
+            variants={MotionContainer}
+            initial={"onInitial"}
+            animate={"offAnimation"}
+            transition={{
+              when: "beforeChildren",
+              staggerChildren: 2,
+              type: "just",
+            }}>
                 <div>
-                    <h2>{name}</h2> 
+                    <motion.h2 variants={MotionForm}>{name}</motion.h2> 
                     <p>{location}</p>
                     <h3><StyledSpan>{followers}</StyledSpan>  followers  |  <StyledSpan>{following}</StyledSpan> following</h3>
                 </div>
             </StyledBox>
             
 
-            <StyledBox>
-            <img src="https://github-readme-streak-stats.herokuapp.com/?user=GabrielMoreiraB&stroke=2ea043&background=101723&ring=3382ed&fire=3382ed&currStreakNum=0bd967&currStreakLabel=3382ed&sideNums=0bd967&sideLabels=3382ed&dates=0bd967&hide_border=true" />
+            <StyledBox
+            variants={MotionContainer}
+        initial={"onInitial"}
+        animate={"offAnimation"}
+        transition={{
+          when: "beforeChildren",
+          staggerChildren: 2,
+          type: "just",
+        }}>
+            <img src={`https://github-readme-streak-stats.herokuapp.com/?user=${usuario}&stroke=2ea043&background=101723&ring=3382ed&fire=3382ed&currStreakNum=0bd967&currStreakLabel=3382ed&sideNums=0bd967&sideLabels=3382ed&dates=0bd967&hide_border=true`} />
             </StyledBox>
            
 
-            <StyledBox>
+            <StyledBox
+            variants={MotionContainer}
+        initial={"onInitial"}
+        animate={"offAnimation"}
+        transition={{
+          when: "beforeChildren",
+          staggerChildren: 2,
+          type: "just",
+        }}>
                 <StyledFlex>
                     <h2>Perfil <StyledSpanColor>{usuario}</StyledSpanColor></h2>
                     <StyledImg src="https://octodex.github.com/images/inspectocat.jpg" alt="" />
@@ -112,13 +139,31 @@ const User = () => {
                 {blog !== '' && <a href={blog} target="_blank"> Blog pessoal</a>}
                 <StyledSpace>
                 <h2>Número de Repositorios</h2> 
-                <h3>{publicRepos}</h3>
+                <motion.h3 
+                    variants={MotionForm}
+                    animate={{
+                        scale: [1, 2, 2, 1, 1],
+                        rotate: [0, 0, 270, 270, 0],
+                        borderRadius: ["20%", "20%", "50%", "50%", "20%"],
+                      }}
+                    
+                >
+                    {publicRepos}
+                </motion.h3>
                 </StyledSpace>
                 
             </StyledBox>
 
-            <StyledBox>
-                <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=GabrielMoreiraB&theme=transparent&hide_border=true"/>
+            <StyledBox
+            variants={MotionContainer}
+            initial={"onInitial"}
+            animate={"offAnimation"}
+            transition={{
+              when: "beforeChildren",
+              staggerChildren: 2,
+              type: "just",
+            }}>
+                <img src={`https://github-readme-stats.vercel.app/api/top-langs/?username=${usuario}&theme=transparent&hide_border=true`}/>
             </StyledBox>
 
         </StylesContainer>

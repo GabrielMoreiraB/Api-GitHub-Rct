@@ -4,6 +4,7 @@ import Loading from '../../components/Loading';
 import { UsuarioContext } from '../../Context/Usuario';
 import trataData from '../../components/Services/trataData';
 import { FaStar, FaRegStar} from "react-icons/fa";
+import { motion } from 'framer-motion';
 
 const StyledBox = styled.div `
   display: flex;
@@ -27,7 +28,7 @@ box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25),
   overflow: auto;
 `
 
-const StyledContainerPort = styled.div`
+const StyledContainerPort = styled(motion.div)`
   background-color: #434C7E;
   padding: 1em;
   width: 100%;
@@ -71,10 +72,15 @@ border-radius: 50%;
 const Fovaritos = () => {
     const {
         favoritos, 
-        setFavoritos
-        } = useContext(UsuarioContext);    
+        setFavoritos,
+        starredItems, 
+        setStarredItems,
+        MotionContainer,
+        } = useContext(UsuarioContext);  
+        
+        
 
-const [starredItems, setStarredItems] = useState([]);
+
 
 const handleToggle = (item, index) => {
   setStarredItems((prevItems) => {
@@ -102,7 +108,17 @@ return (
         <h1>Seus Projetos Favoritos</h1>
         {favoritos.map((item, index) => {
         return (
-            <StyledContainerPort key={index}>
+            <StyledContainerPort 
+              variants={MotionContainer}
+              initial={"onInitial"}
+              animate={"offAnimation"}
+              transition={{
+                when: "beforeChildren",
+                staggerChildren: 0.2,
+                type: "just",
+              }}
+              key={index}
+            >
             <a target='_blank' href={item.html_url}><h3>{item.name}</h3></a>
             <p>criado em: <StyledSpan>{trataData(item.created_at)}</StyledSpan></p>
             <StyledLinguage>{item.language}</StyledLinguage>
