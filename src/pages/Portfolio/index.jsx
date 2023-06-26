@@ -5,6 +5,7 @@ import { UsuarioContext } from '../../Context/Usuario';
 import trataData from '../../components/Services/trataData';
 import { FaStar, FaRegStar, FaRegArrowAltCircleDown } from "react-icons/fa";
 import { motion } from 'framer-motion';
+import ErroUsuario from '../../components/ErroUsuario'
 
 
 
@@ -72,7 +73,8 @@ const StyledButton = styled.button`
 
 const Portfolio = () => {
 
-    const { portifolio,
+    const { usuario, 
+            portifolio,
             setPagina,
             pagina,
             favoritos, 
@@ -98,11 +100,14 @@ const Portfolio = () => {
         setFavoritos(array);
     };
 
+    let mainJsx = (
+      <StyledBox>
+        <ErroUsuario/>
+      </StyledBox>
+    )
 
-
-
-    return (
-      <StyledBox >
+    if(usuario){
+      mainJsx = (<StyledBox >
         {portifolio.map((item, index) => {
           return (
             <StyledContainerPort 
@@ -130,7 +135,14 @@ const Portfolio = () => {
           );
         })}
         <StyledButton onClick={()=> setPagina(pagina + 1)}><FaRegArrowAltCircleDown/></StyledButton>
-      </StyledBox>
+      </StyledBox>)
+    }
+
+
+    return (
+        <>
+        {mainJsx}
+        </>
     );
 }
  

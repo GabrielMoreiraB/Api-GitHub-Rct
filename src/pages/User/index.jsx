@@ -3,6 +3,7 @@ import { useContext } from 'react';
 import Loading from '../../components/Loading';
 import { UsuarioContext } from '../../Context/Usuario';
 import { motion } from 'framer-motion';
+import ErroUsuario from '../../components/ErroUsuario';
 
 
 const StylesContainer = styled.div `
@@ -47,6 +48,23 @@ box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25),
   width:45%;
 `
 
+const StyledErroUsuario = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 1em;
+  margin:  0 2em;
+  background: #101723;
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25),
+  0px 188px 52px rgba(0, 0, 0, 0.01), 0px 120px 48px rgba(0, 0, 0, 0.04),
+  0px 68px 41px rgba(0, 0, 0, 0.15), 0px 30px 30px rgba(0, 0, 0, 0.26),
+  0px 8px 17px rgba(0, 0, 0, 0.29),
+  inset 0px 6px 8px rgba(255, 255, 255, 0.1),
+  inset 0px -4px 5px rgba(0, 0, 0, 0.22);
+  border-radius: 20px;
+`
+
 const StyledSpan = styled.span `
     background-color: #ffffff;
     color: #101723;
@@ -86,8 +104,14 @@ const User = () => {
             MotionContainer,
             MotionForm} = useContext(UsuarioContext);
 
-
-    return ( 
+    let mainJsx = (
+      <StyledErroUsuario>
+        <ErroUsuario/>
+      </StyledErroUsuario>
+    )
+    
+    if(usuario){
+      mainJsx = ( 
         <StylesContainer>
             <StyledBox
             variants={MotionContainer}
@@ -167,8 +191,14 @@ const User = () => {
             </StyledBox>
 
         </StylesContainer>
+      )
+    }
 
-        
+
+    return ( 
+        <>
+        {mainJsx}
+        </>        
      );
 }
  

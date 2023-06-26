@@ -24,6 +24,7 @@ export const UsuarioProvider = ({ children }) => {
     const[favoritos, setFavoritos] = useState([]);
     const [starredItems, setStarredItems] = useState([]);
 
+
 useEffect(() => {
     async function getUser(usuario) {
         let user = await apiGetUser(usuario);
@@ -86,7 +87,7 @@ useEffect( ()=> {
             starredItems, 
             setStarredItems,
             MotionContainer,
-            MotionForm
+            MotionForm,
             }}>
             {children}
         </UsuarioContext.Provider>
