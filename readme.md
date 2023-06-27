@@ -11,4 +11,17 @@ Você pode ver o site em funcionamento através **[deste link](https://api-git-h
 ## 📦 Imagens e Explicação
 Nosso projeto conta com context para gerenciar os estados dos seus componentes dentro de uma aplicação web sem precisar usar algum pacote para isso, com  React Router Dom, uma biblioteca para o React criada com o objetivo de resolver problemas de rotas para as páginas de um site e tornar o desenvolvimento muito mais simples e escalável. Com Styled Components que é uma biblioteca (lib) do React que nos permite criar componentes de estilo ao escrever códigos CSS dentro de um arquivo JavaScript.
 
+Segue abaixo imagens da aplicação em suas diferentes páginas. 
 
+* **Home 💻** - 
+![alt text](https://github.com/GabrielMoreiraB/Api-GitHub-Rct/blob/main/public/readme/home.png)
+
+* **User** - 
+![alt text](https://github.com/GabrielMoreiraB/Api-GitHub-Rct/blob/main/public/readme/repositorio.png)
+
+* **Projetos do desenvolvedor** - 
+![alt text](https://github.com/GabrielMoreiraB/Api-GitHub-Rct/blob/main/public/readme/repositorio.png)
+
+#* **Favoritos** - 
+
+![alt text](https://github.com/GabrielMoreiraB/Api-GitHub-Rct/blob/main/public/readme/favoritos.png)
