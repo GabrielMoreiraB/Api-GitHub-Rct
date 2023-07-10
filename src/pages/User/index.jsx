@@ -87,8 +87,35 @@ display: flex;
 width: 100%;
 align-items: center;
 justify-content: space-evenly;
-
 `
+
+const Styledglass = styled.div`
+  width: 75px;
+  height: 75px;
+  background: rgba(255, 255, 255, 0.096);
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+  position: relative;
+  animation: moveUpDown 2s infinite alternate ease-in-out;
+  @keyframes moveUpDown {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(20px);
+  }
+}
+`
+
+const StyledIntoglass = styled.span`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 24px;
+  font-weight: bold;
+`
+
 
 const User = () => {
 
@@ -163,17 +190,16 @@ const User = () => {
                 {blog !== '' && <a href={blog} target="_blank"> Blog pessoal</a>}
                 <StyledSpace>
                 <h2>Número de Repositorios</h2> 
+
                 <motion.h3 
-                    variants={MotionForm}
-                    animate={{
-                        scale: [1, 2, 2, 1, 1],
-                        rotate: [0, 0, 270, 270, 0],
-                        borderRadius: ["20%", "20%", "50%", "50%", "20%"],
-                      }}
                     
                 >
-                    {publicRepos}
+                  <Styledglass>
+                    <StyledIntoglass>{publicRepos} </StyledIntoglass>
+                  </Styledglass>
+                    
                 </motion.h3>
+
                 </StyledSpace>
                 
             </StyledBox>

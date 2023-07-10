@@ -97,13 +97,10 @@ const handleToggle = (item, index) => {
     }
     setFavoritos(array);
 };
-console.log(favoritos)
 
 
 
 return (
-    <>
-
     <StyledBox >
         <h1>Seus Projetos Favoritos</h1>
         {favoritos.map((item, index) => {
@@ -139,7 +136,6 @@ return (
         );
         })}
     </StyledBox>
-    </>
 );
 }
  
