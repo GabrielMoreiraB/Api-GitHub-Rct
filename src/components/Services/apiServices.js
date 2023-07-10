@@ -3,7 +3,7 @@ import { get } from "./httpService";
 
 export async function apiGetUser(usuario) {
     
-    const user = await get(`http://api.github.com/users/${usuario}`);
+    const user = await get(`https://api.github.com/users/${usuario}`);
     /* console.log(user); */
     return user;
 }
