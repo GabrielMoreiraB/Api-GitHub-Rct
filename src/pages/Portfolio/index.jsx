@@ -81,7 +81,7 @@ const Portfolio = () => {
             setFavoritos,
             MotionContainer
             } = useContext(UsuarioContext);    
-            
+
     const handleToggle = (item, index) => {
       
       const posicaoItem = favoritos.indexOf(item);
@@ -92,6 +92,7 @@ const Portfolio = () => {
           array.splice(index, 1);
         }
         setFavoritos(array);
+        localStorage.setItem('favoritos', JSON.stringify(array));
     };
 
     let mainJsx = (

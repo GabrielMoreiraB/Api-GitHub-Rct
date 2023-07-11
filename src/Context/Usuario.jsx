@@ -50,6 +50,14 @@ useEffect( ()=> {
     getPortfolio(usuario, pagina )
 },[usuario, pagina])
 
+useEffect(() => {
+    const favoritosData = localStorage.getItem('favoritos');
+    if(favoritosData){
+        const favoritosArray = JSON.parse(favoritosData);
+        setFavoritos(favoritosArray)
+    }
+  }, []);
+
 
 
     const MotionContainer = {
