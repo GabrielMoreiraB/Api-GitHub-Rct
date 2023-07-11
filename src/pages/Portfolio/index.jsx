@@ -81,15 +81,9 @@ const Portfolio = () => {
             setFavoritos,
             MotionContainer
             } = useContext(UsuarioContext);    
-    
-    const [starredItems, setStarredItems] = useState([]);
-
+            
     const handleToggle = (item, index) => {
-      setStarredItems((prevItems) => {
-        const updatedItems = [...prevItems];
-        updatedItems[index] = !updatedItems[index];
-        return updatedItems;
-      });
+      
       const posicaoItem = favoritos.indexOf(item);
         let array = [...favoritos]
         if(posicaoItem === -1) {
@@ -125,7 +119,7 @@ const Portfolio = () => {
               <p>criado em: <StyledSpan>{trataData(item.created_at)}</StyledSpan></p>
               <StyledLinguage>{item.language}</StyledLinguage>
               <StyledStar >
-                 {starredItems[index] ? (
+                 {favoritos.includes(item) ? (
                     <FaStar onClick={() => handleToggle(item, index)} />
                   ) : (
                     <FaRegStar onClick={() => handleToggle(item, index)} />
